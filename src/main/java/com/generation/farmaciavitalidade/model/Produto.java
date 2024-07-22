@@ -2,10 +2,13 @@ package com.generation.farmaciavitalidade.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -25,6 +28,10 @@ public class Produto {
 	
 	@NotNull(message = "Este atributo é obrigatório!")
 	private LocalDate validade;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Categoria categoria;
 	
 	
 //GETTERS E SETTERS
@@ -59,6 +66,15 @@ public class Produto {
 	public void setValidade(LocalDate validade) {
 		this.validade = validade;
 	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	
 	
 	
 }
